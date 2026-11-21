@@ -20,7 +20,7 @@ Level fast, 1 round. Accepted: 3 minor (2 fixed, 1 documented). Dropped: 0.
 
 ## Open manual checks
 
-- Workflows have not run on real GitHub Actions yet (golangci-lint-action@v8 install-only unverified); check the PR's checks.
+- None. CI verified on GitHub: `gh pr checks 37` green (api ci 1m55s, app ci 5s). The first run failed because golangci-lint-action ran its own lint at the repo root; fixed by installing the binary with `go install ...@v2.15.0`.
 
 ## Follow-ups
 
