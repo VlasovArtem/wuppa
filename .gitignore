@@ -8,6 +8,7 @@
 .steps/
 .out/
 api/.out/
+api/internal/zzlintselftest/
 app/.out/
 
 # Secrets
