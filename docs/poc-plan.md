@@ -431,7 +431,7 @@ Tasks are ordered for one implementer and run with the `tdd-step` workflow (see 
 
 ### Phase 0 — Foundations
 
-#### [ ] SET-01 · Monorepo, CI, linting · [#2](https://github.com/VlasovArtem/wuppa/issues/2) · plan: direct · review: fast
+#### [x] SET-01 · Monorepo, CI, linting · [#2](https://github.com/VlasovArtem/wuppa/issues/2) · plan: direct · review: fast
 
 - Create `api/` and `app/` folders, root `README.md`, `.gitignore` (Go, Flutter, IDE, `.env`); delete the IDE sample `main.go`, the root `go.mod` and the stray `gitignore.gitignore`. Go module: `github.com/VlasovArtem/wuppa/api`.
 - GitHub Actions:
@@ -440,7 +440,7 @@ Tasks are ordered for one implementer and run with the `tdd-step` workflow (see 
 - `api/.golangci.yml` with `govet`, `staticcheck`, `errcheck`, `gosec`, `revive`.
 
 Done when:
-- [ ] Both workflows exist and are valid YAML; a deliberate lint error makes `make lint` fail locally.
+- [x] Both workflows exist and are valid YAML; a deliberate lint error makes `make lint` fail locally.
 
 #### [ ] SET-02 · Local environment · [#3](https://github.com/VlasovArtem/wuppa/issues/3) · plan: opus · review: standard
 
@@ -745,7 +745,7 @@ Done when:
 
 #### [ ] BE-13 · Test environment · [#33](https://github.com/VlasovArtem/wuppa/issues/33) · plan: opus · review: standard
 
-- Multi-stage `api/Dockerfile` (build with `golang:1.23`, run on `gcr.io/distroless/static`), non-root user.
+- Multi-stage `api/Dockerfile` (build with `golang:1.27`, run on `gcr.io/distroless/static`), non-root user.
 - Run migrations on start (`goose up` in `main` behind a `MIGRATE_ON_START=true` flag).
 - **[Human]** Choose the hosting provider (EU region), create managed PostgreSQL, pick an EU SMTP provider (`SMTP_URL`, `MAIL_FROM`), set secrets (and `TRUSTED_PROXY_HOPS` for the provider's load balancer), domain `api-test.<domain>`. Then add a deploy job to `api.yml` for merges to `main`.
 
