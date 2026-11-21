@@ -1,7 +1,7 @@
 # SET-01 · result
 
 status: DONE
-pr: PR_URL
+pr: 'https://github.com/VlasovArtem/wuppa/pull/37'
 commits: 711da8a test(SET-01): failing tests; fdaddb4 SET-01: monorepo skeleton, lint, workflows; plus review fixes and docs
 
 ## Gates
