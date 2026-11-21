@@ -431,7 +431,7 @@ Tasks are ordered for one implementer. **[Human]** marks steps Claude Code canno
 
 ### Phase 0 — Foundations
 
-#### [ ] SET-01 · Monorepo, CI, linting
+#### [ ] SET-01 · Monorepo, CI, linting · [#2](https://github.com/VlasovArtem/wuppa/issues/2)
 
 - Create `api/` and `app/` folders, root `README.md`, `.gitignore` (Go, Flutter, IDE, `.env`); delete the IDE sample `main.go`, the root `go.mod` and the stray `gitignore.gitignore`. Go module: `github.com/VlasovArtem/wuppa/api`.
 - GitHub Actions:
@@ -442,7 +442,7 @@ Tasks are ordered for one implementer. **[Human]** marks steps Claude Code canno
 Done when:
 - [ ] Both workflows exist and are valid YAML; a deliberate lint error makes `make lint` fail locally.
 
-#### [ ] SET-02 · Local environment
+#### [ ] SET-02 · Local environment · [#3](https://github.com/VlasovArtem/wuppa/issues/3)
 
 - `api/docker-compose.yml`: `postgres:16`, user/password/db `wuppa`, port 5432, named volume; `axllent/mailpit` (SMTP 1025, web UI 8025) for password-reset emails.
 - `api/Makefile` targets: `db-up`, `db-down`, `migrate`, `migrate-down`, `seed`, `run`, `test`, `lint`, `sqlc`, `openapi-lint`.
@@ -451,7 +451,7 @@ Done when:
 Done when:
 - [ ] `make db-up && make migrate` succeeds on a clean machine (after BE-02 exists, re-check).
 
-#### [ ] BE-01 · API skeleton, conventions, OpenAPI draft
+#### [ ] BE-01 · API skeleton, conventions, OpenAPI draft · [#4](https://github.com/VlasovArtem/wuppa/issues/4)
 
 - `cmd/api/main.go`: load config, open pgx pool, build router, graceful shutdown on SIGTERM (10 s).
 - Middleware: request ID (`X-Request-ID`), slog JSON request log (method, path, status, duration, request id — no bodies), panic recovery → `500 internal`, 10 s timeout.
@@ -464,7 +464,7 @@ Done when:
 - [ ] Tests for `Decode` (unknown field, too large) and `Error` output shape.
 - [ ] `make openapi-lint` passes.
 
-#### [ ] BE-02 · Database schema v1
+#### [ ] BE-02 · Database schema v1 · [#5](https://github.com/VlasovArtem/wuppa/issues/5)
 
 - Migrations with the exact SQL from section 5 (split by group; each has a working `-- +goose Down`).
 - `sqlc.yaml` (engine postgresql, pgx/v5, emit JSON tags off, queries in `internal/db/queries/`).
@@ -475,7 +475,7 @@ Done when:
 - [ ] `make migrate && make migrate-down && make migrate` succeeds.
 - [ ] `make sqlc` produces no diff in CI.
 
-#### [ ] SET-03 · Flutter app skeleton
+#### [ ] SET-03 · Flutter app skeleton · [#6](https://github.com/VlasovArtem/wuppa/issues/6)
 
 - `flutter create --org app.wuppa --project-name wuppa app` (iOS + Android only).
 - Flavours / entry points: `lib/main_local.dart` (API `http://10.0.2.2:8080` on Android emulator, `http://localhost:8080` on iOS simulator), `lib/main_test.dart` (test server URL from `--dart-define=API_BASE_URL`).
@@ -485,7 +485,7 @@ Done when:
 Done when:
 - [ ] `flutter analyze` and `flutter test` pass; app runs on an emulator showing a placeholder screen.
 
-#### [ ] MOB-01 · App shell, navigation, theme, API client
+#### [ ] MOB-01 · App shell, navigation, theme, API client · [#7](https://github.com/VlasovArtem/wuppa/issues/7)
 
 - Theme: one primary colour, one accent, rounded cards, large buttons; kid screens use larger text (scale 1.2).
 - `go_router` with redirect logic based on `SessionState`: `none` → welcome; `guardian` → guardian home; `kid` → kid home; `guardianKidView(kidId)` → kid home with PIN exit.
@@ -503,7 +503,7 @@ Done when:
 
 ### Phase 1 — Accounts, kids, pairing
 
-#### [ ] BE-03 · Guardian sign-up, login, tokens
+#### [ ] BE-03 · Guardian sign-up, login, tokens · [#8](https://github.com/VlasovArtem/wuppa/issues/8)
 
 - Package `internal/auth`: `HashPassword`, `VerifyPassword` (constant-time), `NewAccessToken`, `ParseAccessToken`, `NewOpaqueToken(prefix)` returning token + SHA-256 hash.
 - `POST /v1/auth/signup`: validate (email format, password ≥ 10, names, `timezone` loads with `time.LoadLocation`, `locale` is `en` or `ru`), create family (with that timezone) + guardian in one transaction, issue tokens; `409 email_taken`.
@@ -516,7 +516,7 @@ Done when:
 Done when:
 - [ ] Tests: signup, invalid timezone / locale → 422, duplicate email, login ok, wrong password, unknown email, refresh rotation, refresh reuse within 10 s does not revoke, later reuse revokes all, logout, expired access token → 401, rate limit.
 
-#### [ ] BE-14 · Password reset
+#### [ ] BE-14 · Password reset · [#9](https://github.com/VlasovArtem/wuppa/issues/9)
 
 - Package `internal/mail`: `Mailer` interface; SMTP implementation on the standard library (`net/smtp`, STARTTLS) using `SMTP_URL` / `MAIL_FROM`; logging no-op when `SMTP_URL` is empty (log the event, never the code or the email).
 - Plain-text reset email in EN and RU (`internal/mail/templates`), chosen by `guardians.locale`.
@@ -526,7 +526,7 @@ Done when:
 - [ ] Tests (fake mailer): unknown email → 202 and no email; code works once; wrong code 5 times kills it; expired code → 410; success revokes old refresh tokens; rate limit → 429.
 - [ ] Manual: request a reset locally and read the email in Mailpit (`localhost:8025`).
 
-#### [ ] BE-04 · Family and kid profiles
+#### [ ] BE-04 · Family and kid profiles · [#10](https://github.com/VlasovArtem/wuppa/issues/10)
 
 - `GET /v1/family`, `POST /v1/kids`, `PATCH /v1/kids/{id}` with validation from section 5.
 - Every query filters by `family_id` from the context.
@@ -534,7 +534,7 @@ Done when:
 Done when:
 - [ ] Tests: create, edit, invalid avatar / age band → 422, kid of another family → 404.
 
-#### [ ] BE-05 · Kid device pairing
+#### [ ] BE-05 · Kid device pairing · [#11](https://github.com/VlasovArtem/wuppa/issues/11)
 
 - Pairing code rules from section 6 (rule 11); `POST /v1/kids/{id}/pairing-code`.
 - `POST /v1/pair`: in one transaction check code (unused, not expired), mark used, create `kid_devices` (with `shared`) and a `kd_` token; wrong → `410 invalid_code`. Rate limit 10 / minute per IP.
@@ -545,7 +545,7 @@ Done when:
 Done when:
 - [ ] Tests: pair ok, expired code, used code, wrong code, new code invalidates old, code generation retries on a primary-key conflict, revoked device → 401, kid token on `POST /v1/kids` → 403.
 
-#### [ ] BE-15 · Guardian invites
+#### [ ] BE-15 · Guardian invites · [#12](https://github.com/VlasovArtem/wuppa/issues/12)
 
 - `POST /v1/family/invites` (rule 14); `GET /v1/family` returns `guardians`.
 - Sign-up with `invite_code` instead of `family_name` + `timezone`; both or neither → `422 validation_failed`.
@@ -554,7 +554,7 @@ Done when:
 Done when:
 - [ ] Tests: invite → sign-up joins the family and sees the same kids, tasks and pending items; used or expired invite → 410; `family_name` + `invite_code` together → 422; two guardians deciding the same completion → second gets 409 `already_decided`.
 
-#### [ ] MOB-02 · Sign-up and log-in
+#### [ ] MOB-02 · Sign-up and log-in · [#13](https://github.com/VlasovArtem/wuppa/issues/13)
 
 - Welcome screen with two big buttons.
 - Sign-up form (display name, family name, email, password with show/hide) and log-in form with a "Forgot password?" link; sign-up also sends the device timezone (`flutter_timezone`) and language (`ru` if the device is Russian, else `en`); inline validation matching the API rules; show API errors.
@@ -564,7 +564,7 @@ Done when:
 Done when:
 - [ ] Widget tests for form validation; manual: sign up, kill app, reopen → still logged in.
 
-#### [ ] MOB-13 · Forgot password
+#### [ ] MOB-13 · Forgot password · [#14](https://github.com/VlasovArtem/wuppa/issues/14)
 
 - Step 1: email → `password-reset/request` → "If this email is registered, we sent a code".
 - Step 2: 6-digit code + new password (show / hide) → `password-reset/confirm` → store tokens, go to guardian home. `invalid_code` → "Code is wrong or expired" with "Send a new code".
@@ -572,7 +572,7 @@ Done when:
 Done when:
 - [ ] Widget tests for both steps; manual: full reset against the local API with Mailpit.
 
-#### [ ] MOB-03 · Family setup and add kid
+#### [ ] MOB-03 · Family setup and add kid · [#15](https://github.com/VlasovArtem/wuppa/issues/15)
 
 - Add / edit kid form: nickname, 8-avatar grid, age band chips.
 - Guardian home: list of kids (avatar, nickname, points placeholder); tap → kid detail.
@@ -580,7 +580,7 @@ Done when:
 Done when:
 - [ ] A guardian can add and edit two kids against the local API.
 
-#### [ ] MOB-04 · Pairing on both devices
+#### [ ] MOB-04 · Pairing on both devices · [#16](https://github.com/VlasovArtem/wuppa/issues/16)
 
 - Guardian kid detail → "Connect device" → pairing code screen with countdown and "New code"; devices list with "Disconnect".
 - Kid: welcome → "I'm a kid" → 6 digit boxes (auto-advance, paste support) → on success store kid token, go to kid home ("Hi, {nickname}!").
@@ -589,7 +589,7 @@ Done when:
 Done when:
 - [ ] Manual: pair an emulator with a second emulator / device; disconnecting returns the kid device to welcome on the next request.
 
-#### [ ] MOB-14 · Invite a second guardian
+#### [ ] MOB-14 · Invite a second guardian · [#17](https://github.com/VlasovArtem/wuppa/issues/17)
 
 - Settings: guardians list; "Invite a parent" → code, expiry, "Copy" and the system share sheet (`share_plus`).
 - Sign-up: an "I have an invite code" switch replaces the family name field with an invite-code field.
@@ -599,7 +599,7 @@ Done when:
 
 ### Phase 2 — The earn loop
 
-#### [ ] BE-06 · Tasks with repeat limits
+#### [ ] BE-06 · Tasks with repeat limits · [#18](https://github.com/VlasovArtem/wuppa/issues/18)
 
 - `internal/domain/period.go`: `PeriodStart` (rule 1) with table tests: just after midnight, Sunday 23:59 → Monday, the last Sunday of March and October in `Europe/Berlin`.
 - Task CRUD (`POST`, `PATCH`, `GET ?kid_id=`); `kid_id` must belong to the family. No delete; `active=false` pauses.
@@ -608,7 +608,7 @@ Done when:
 Done when:
 - [ ] Period tests pass; tests for create / edit / pause and `remaining` across day and week boundaries (inject a clock: `domain.Clock` interface, real and fake implementations).
 
-#### [ ] BE-07 · Mark task done
+#### [ ] BE-07 · Mark task done · [#19](https://github.com/VlasovArtem/wuppa/issues/19)
 
 - `POST /v1/tasks/{id}/complete` per rule 3; `409 task_inactive`, `409 limit_reached`.
 - Idempotency middleware for this route (section 4).
@@ -617,7 +617,7 @@ Done when:
 Done when:
 - [ ] Tests: success, limit reached, rejected completion frees a slot, same `Idempotency-Key` returns the same completion, same key while the first request still runs → 409 `request_in_progress`, same key on another task is a separate request, 10 parallel requests with limit 1 create exactly one completion.
 
-#### [ ] BE-08 · Approve / reject and ledger
+#### [ ] BE-08 · Approve / reject and ledger · [#20](https://github.com/VlasovArtem/wuppa/issues/20)
 
 - `GET /v1/completions?status=pending` (newest first) as `CompletionView`.
 - Approve (rule 5) and reject (rule 6); `409 already_decided`.
@@ -627,14 +627,14 @@ Done when:
 Done when:
 - [ ] Tests: approve writes exactly one ledger entry with the completion's points (even if the task's points changed meanwhile); approving twice → 409 and still one entry; reject writes none; another family's completion → 404.
 
-#### [ ] BE-09 · Balance and points history
+#### [ ] BE-09 · Balance and points history · [#21](https://github.com/VlasovArtem/wuppa/issues/21)
 
 - `GET /v1/me/points` and `GET /v1/kids/{id}/points` (rule 4); entries newest first, max 50, with `title` from the task or reward.
 
 Done when:
 - [ ] Test: balance equals the sum of entries after a mix of approvals.
 
-#### [ ] MOB-06 · Create and edit tasks
+#### [ ] MOB-06 · Create and edit tasks · [#22](https://github.com/VlasovArtem/wuppa/issues/22)
 
 - Task form: title with 6 quick picks per age band (static list in `lib/features/tasks/quick_picks.dart`), points stepper with presets 5 / 10 / 20 / 50, "times per" picker (1–20) + day / week toggle, kid picker.
 - Kid detail lists tasks with edit and pause / resume.
@@ -642,7 +642,7 @@ Done when:
 Done when:
 - [ ] Widget test for form validation; manual: create a daily and a weekly task.
 
-#### [ ] MOB-07 · Kid task list and "Done"
+#### [ ] MOB-07 · Kid task list and "Done" · [#23](https://github.com/VlasovArtem/wuppa/issues/23)
 
 - Kid home: header (avatar, greeting, points), task cards (title, points, "2 left today" / "1 left this week", "Waiting for OK" when pending > 0).
 - "Done" sends a new `Idempotency-Key` per tap; button disabled while sending; `limit_reached` shows "All done for today / this week".
@@ -651,14 +651,14 @@ Done when:
 Done when:
 - [ ] Widget tests for card states (available, pending, used up); manual against the local API.
 
-#### [ ] MOB-08 · Pending approvals
+#### [ ] MOB-08 · Pending approvals · [#24](https://github.com/VlasovArtem/wuppa/issues/24)
 
 - Guardian home shows the pending count; approvals screen grouped by kid with "OK" / "Not yet"; optimistic removal with rollback and error snackbar.
 
 Done when:
 - [ ] Manual: approve on the guardian device, kid's points update after refresh.
 
-#### [ ] MOB-05 · Kid view on a shared phone, PIN lock
+#### [ ] MOB-05 · Kid view on a shared phone, PIN lock · [#25](https://github.com/VlasovArtem/wuppa/issues/25)
 
 - Settings: set / change 4-digit PIN (store salted SHA-256 in secure storage).
 - Kid detail → "Hand phone to {nickname}": the first time, the app creates a pairing code (`POST /v1/kids/{id}/pairing-code`) and pairs itself (`POST /v1/pair` with `shared: true`), then keeps that kid token for this kid; later it reuses the token. Kid view shows the same kid screens as the kid app (kid home with "Done", and later the reward shop and history) with that token, so every rule is the same.
@@ -672,7 +672,7 @@ Done when:
 
 ### Phase 3 — Rewards and motivation
 
-#### [ ] BE-11 · Rewards and redemptions
+#### [ ] BE-11 · Rewards and redemptions · [#26](https://github.com/VlasovArtem/wuppa/issues/26)
 
 - Rewards CRUD; kids see active rewards only.
 - Redeem (rule 7) with idempotency; `GET /v1/me/redemptions`; guardian list of `requested`; approve / refuse (rule 8).
@@ -681,7 +681,7 @@ Done when:
 Done when:
 - [ ] Tests: not enough points → 409; 5 parallel redeems with balance for 2 → exactly 2 succeed; refuse refunds exactly the cost; approve does not touch the ledger; decide twice → 409.
 
-#### [ ] BE-12 · Streaks and badges
+#### [ ] BE-12 · Streaks and badges · [#27](https://github.com/VlasovArtem/wuppa/issues/27)
 
 - `internal/domain/streak.go` (rule 10) and `badges.go` (rule 9); wire into BE-08 approve and BE-11 approve.
 - `GET /v1/me/progress`, `GET /v1/kids/{id}/progress`.
@@ -689,7 +689,7 @@ Done when:
 Done when:
 - [ ] Table tests: streak over midnight, missed day resets, today without approval keeps yesterday's streak; each badge awarded exactly once; `new_badges` returned on the approval that earned them.
 
-#### [ ] MOB-10 · Points, reward shop, requests
+#### [ ] MOB-10 · Points, reward shop, requests · [#28](https://github.com/VlasovArtem/wuppa/issues/28)
 
 - Guardian rewards screen: list, add / edit / pause; requests list with "Give" / "Not now".
 - Kid reward shop: cards with cost and progress bar (`balance / cost`), "Get it" disabled when too few points; my requests with status.
@@ -698,7 +698,7 @@ Done when:
 Done when:
 - [ ] Manual: request → points drop → refuse → points return; request → give → shows as approved.
 
-#### [ ] MOB-11 · Streak and badges display
+#### [ ] MOB-11 · Streak and badges display · [#29](https://github.com/VlasovArtem/wuppa/issues/29)
 
 - Kid home: flame icon + streak; badge row (earned in colour, others greyed).
 - Confetti (package `confetti`) once per newly earned badge (remember seen badges locally).
@@ -708,7 +708,7 @@ Done when:
 
 ### Phase 4 — Push notifications
 
-#### [ ] BE-10 · Push (FCM)
+#### [ ] BE-10 · Push (FCM) · [#30](https://github.com/VlasovArtem/wuppa/issues/30)
 
 - `internal/push`: FCM HTTP v1 client using a service-account JSON (`golang.org/x/oauth2/google`); implements `Notifier`.
 - `POST /v1/push-tokens` upsert for both roles.
@@ -719,7 +719,7 @@ Done when:
 - [ ] Unit tests with a fake HTTP server for FCM (payload shape, RU text for a `ru` token, `en` fallback, token cleanup).
 - [ ] **[Human]** Provide a Firebase project and service-account key; then verify pushes arrive on a device.
 
-#### [ ] MOB-09 · Push and deep links
+#### [ ] MOB-09 · Push and deep links · [#31](https://github.com/VlasovArtem/wuppa/issues/31)
 
 - `firebase_core` + `firebase_messaging`; ask permission after the guardian creates the first task, and for kids after pairing (not in shared kid view).
 - Register / refresh the token with `/v1/push-tokens`, sending the app's current locale; register again when the device language changes.
@@ -731,14 +731,14 @@ Done when:
 
 ### Phase 5 — Ship to test families
 
-#### [ ] SEED-01 · Seed data
+#### [ ] SEED-01 · Seed data · [#32](https://github.com/VlasovArtem/wuppa/issues/32)
 
 - `make seed`: family "Demo" (guardian `demo@wuppa.test` / `demo-password-123`), kids Leo (7-9) and Mia (10-12), 3 tasks each, 2 rewards, a few approved completions over the last 4 days.
 
 Done when:
 - [ ] `make seed` is idempotent (running twice does not duplicate).
 
-#### [ ] BE-13 · Test environment
+#### [ ] BE-13 · Test environment · [#33](https://github.com/VlasovArtem/wuppa/issues/33)
 
 - Multi-stage `api/Dockerfile` (build with `golang:1.23`, run on `gcr.io/distroless/static`), non-root user.
 - Run migrations on start (`goose up` in `main` behind a `MIGRATE_ON_START=true` flag).
@@ -747,7 +747,7 @@ Done when:
 Done when:
 - [ ] `docker build` succeeds locally; the deployed `/healthz` returns 200.
 
-#### [ ] MOB-12 · Test builds
+#### [ ] MOB-12 · Test builds · [#34](https://github.com/VlasovArtem/wuppa/issues/34)
 
 - App icon and name "Wuppa"; version from `pubspec.yaml`; `main_test.dart` points at the test API.
 - **[Human]** Apple Developer and Google Play accounts, bundle id `app.wuppa`, signing, upload to TestFlight and Play internal testing.
@@ -755,7 +755,7 @@ Done when:
 Done when:
 - [ ] Someone outside the team installs both builds and completes the 9-step flow.
 
-#### [ ] QA-01 · End-to-end check
+#### [ ] QA-01 · End-to-end check · [#35](https://github.com/VlasovArtem/wuppa/issues/35)
 
 - Run the 9 steps from section 1 on 2 iOS and 2 Android devices (one older Android).
 - Edge cases: no network when tapping Done (show error, nothing duplicated), expired pairing code, redeem with too few points, two guardians' devices approving the same item at once (second gets 409 and refreshes), password reset end to end, forgot PIN, the whole flow with the device set to Russian.

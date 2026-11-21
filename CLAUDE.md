@@ -8,7 +8,7 @@ The full specification and the ordered task list are in `docs/poc-plan.md`. Read
 
 - Work through `docs/poc-plan.md` **one task at a time, in order**. Do not start the next task until the current one meets every "Done when" check.
 - Before coding a task, restate its goal and list the files you will touch. Ask if something in the spec is unclear or contradicts the code.
-- After finishing a task: run the verification commands listed in the task, tick its checkbox in `docs/poc-plan.md`, and commit with the message `<TASK-ID>: <short summary>` (e.g. `BE-03: guardian sign-up, login, tokens`).
+- After finishing a task: run the verification commands listed in the task, tick its checkbox in `docs/poc-plan.md`, and commit with the message `<TASK-ID>: <short summary>` plus a body line `Closes #<issue>` (e.g. `BE-03: guardian sign-up, login, tokens` / `Closes #8`). Every task heading in `docs/poc-plan.md` links its GitHub issue; manual steps are collected in issue #1.
 - Do not add features, endpoints, tables or dependencies that the plan does not ask for. If one seems necessary, propose it first.
 - Business rules (limits, points, permissions) live in the API. The app never decides them on its own.
 - Never log personal data (emails, nicknames, tokens, passwords).
