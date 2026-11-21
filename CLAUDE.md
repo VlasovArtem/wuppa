@@ -119,4 +119,4 @@ Used by the global `tdd-step` skill (`~/.claude/skills/tdd-step`). Each task is 
   - `RESULT: PASS <target> tests=<n> skipped=<n> duration=<s>s` (lint: `issues=0`)
   - `RESULT: FAIL <target> failed=<n> log=<path>` (lint: `issues=<n>`)
   - `RESULT: ERROR <target> <reason>` (environment problem, e.g. Docker not running, unknown `PKG`)
-- Exit codes: 0 pass, 1 test or lint failure, 2 environment or usage error.
+- Exit codes: the scripts behind the targets (e.g. `api/scripts/lint.sh`) exit 0 pass, 1 test or lint failure, 2 environment or usage error. Through `make`, any failure exits 2 (make's own code), so callers read the `RESULT:` line, which is authoritative.
