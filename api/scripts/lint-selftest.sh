@@ -35,16 +35,37 @@ if [ -f "$root/.github/workflows/app.yml" ]; then
     fail "app.yml has no hashFiles('app/pubspec.yaml') guard"
 fi
 
+# check_clean <label> <command...>: exit 0 and last stdout line RESULT: PASS
+check_clean() {
+  label="$1"; shift
+  "$@" >"$out" 2>/dev/null
+  code=$?
+  last="$(tail -n 1 "$out")"
+  [ "$code" -eq 0 ] || fail "$label clean tree: exit $code, expected 0"
+  [ "$last" = "RESULT: PASS lint issues=0" ] ||
+    fail "$label clean tree: last line is '$last', expected 'RESULT: PASS lint issues=0'"
+}
+
+# check_bad <label> <expected-exit|nonzero> <command...>
+check_bad() {
+  label="$1"; want="$2"; shift 2
+  "$@" >"$out" 2>/dev/null
+  code=$?
+  last="$(tail -n 1 "$out")"
+  if [ "$want" = "nonzero" ]; then
+    [ "$code" -ne 0 ] || fail "$label bad file: exit 0, expected non-zero"
+  else
+    [ "$code" -eq "$want" ] || fail "$label bad file: exit $code, expected $want"
+  fi
+  grep -Eq '^[^ :]+:[0-9]+:[0-9]+: .+ \([a-z]+\)$' "$out" ||
+    fail "$label bad file: no 'file:line:col: message (linter)' line"
+  printf '%s\n' "$last" | grep -Eq '^RESULT: FAIL lint issues=[0-9]+ log=.+' ||
+    fail "$label bad file: last line is '$last', expected 'RESULT: FAIL lint issues=<n> log=<path>'"
+}
+
 # --- clean tree passes ----------------------------------------------------
-make -C "$api" lint >"$out" 2>&1
-code=$?
-last="$(tail -n 1 "$out")"
-if [ "$code" -ne 0 ]; then
-  fail "clean tree: make lint exited $code, expected 0"
-fi
-if [ "$last" != "RESULT: PASS lint issues=0" ]; then
-  fail "clean tree: last line is '$last', expected 'RESULT: PASS lint issues=0'"
-fi
+check_clean "scripts/lint.sh" bash "$api/scripts/lint.sh"
+check_clean "make lint" make -s -C "$api" lint
 
 # --- deliberate lint error fails ------------------------------------------
 mkdir -p "$tmpdir"
@@ -58,18 +79,10 @@ func Bad() {
 }
 EOF
 
-make -C "$api" lint >"$out" 2>&1
-code=$?
-last="$(tail -n 1 "$out")"
-if [ "$code" -ne 1 ]; then
-  fail "bad file: make lint exited $code, expected 1"
-fi
-if ! grep -Eq '^[^ :]+:[0-9]+:[0-9]+: .+ \([a-z]+\)$' "$out"; then
-  fail "bad file: no 'file:line:col: message (linter)' line in output"
-fi
-if ! printf '%s\n' "$last" | grep -Eq '^RESULT: FAIL lint issues=[0-9]+ log=.+'; then
-  fail "bad file: last line is '$last', expected 'RESULT: FAIL lint issues=<n> log=<path>'"
-fi
+# The script owns the exact exit codes; make maps any recipe failure to exit 2.
+check_bad "scripts/lint.sh" 1 bash "$api/scripts/lint.sh"
+check_bad "make lint" nonzero make -s -C "$api" lint
+rm -rf "$tmpdir"
 
 if [ "$fails" -ne 0 ]; then
   echo "lint-selftest: FAIL ($fails checks failed)"

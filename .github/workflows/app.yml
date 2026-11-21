@@ -1,0 +1,41 @@
+name: app
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'app/**'
+      - '.github/workflows/app.yml'
+  pull_request:
+    paths:
+      - 'app/**'
+      - '.github/workflows/app.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        if: hashFiles('app/pubspec.yaml') != ''
+        with:
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        if: hashFiles('app/pubspec.yaml') != ''
+        run: flutter pub get
+      - name: Analyze
+        if: hashFiles('app/pubspec.yaml') != ''
+        run: flutter analyze
+      - name: Test
+        if: hashFiles('app/pubspec.yaml') != ''
+        run: flutter test
+      - name: Placeholder
+        if: hashFiles('app/pubspec.yaml') == ''
+        run: echo "app/ has no Flutter project yet (SET-03)"

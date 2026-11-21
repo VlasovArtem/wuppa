@@ -1,3 +1,41 @@
+# IDE
 .idea
+.vscode/
+*.iml
+.DS_Store
+
+# Agent scratch and command output
 .steps/
 .out/
+api/.out/
+app/.out/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Go
+*.exe
+*.test
+*.out
+coverage.txt
+/api/bin/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+app/build/
+app/.fvm/
+*.iml
+local.properties
+**/Pods/
+**/DerivedData/
+**/android/.gradle/
+**/android/key.properties
+**/android/app/google-services.json
+**/ios/Runner/GoogleService-Info.plist
