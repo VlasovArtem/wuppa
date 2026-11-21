@@ -1,0 +1,7 @@
+{"ImportPath":"github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]","Action":"build-output","Output":"# github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]\n"}
+{"ImportPath":"github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]","Action":"build-output","Output":"internal/broken/a_test.go:3:31: declared and not used: x\n"}
+{"ImportPath":"github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]","Action":"build-output","Output":"internal/broken/a_test.go:3:39: cannot use \"s\" (untyped string constant) as int value in variable declaration\n"}
+{"ImportPath":"github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]","Action":"build-fail"}
+{"Time":"2026-11-21T22:42:01.132604+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/broken"}
+{"Time":"2026-11-21T22:42:01.132679+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/broken","Output":"FAIL\tgithub.com/VlasovArtem/wuppa/api/internal/broken [build failed]\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.132692+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/broken","Elapsed":0,"FailedBuild":"github.com/VlasovArtem/wuppa/api/internal/broken [github.com/VlasovArtem/wuppa/api/internal/broken.test]"}

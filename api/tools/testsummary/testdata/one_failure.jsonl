@@ -1,0 +1,15 @@
+{"Time":"2026-11-21T22:41:59.510727+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail"}
+{"Time":"2026-11-21T22:41:59.800653+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX"}
+{"Time":"2026-11-21T22:41:59.800691+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Output":"=== RUN   TestX\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.80071+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Output":"    foo_test.go:5: start\n"}
+{"Time":"2026-11-21T22:41:59.800714+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Output":"    foo_test.go:6: want 1 got 2\n","OutputType":"error"}
+{"Time":"2026-11-21T22:41:59.800716+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Output":"    foo_test.go:7: end\n"}
+{"Time":"2026-11-21T22:41:59.800721+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Output":"--- FAIL: TestX (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.800726+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestX","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.80073+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestOK"}
+{"Time":"2026-11-21T22:41:59.800731+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestOK","Output":"=== RUN   TestOK\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.800756+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestOK","Output":"--- PASS: TestOK (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.800758+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Test":"TestOK","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.800759+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Output":"FAIL\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.801069+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Output":"FAIL\tgithub.com/VlasovArtem/wuppa/api/internal/onefail\t0.290s\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.80108+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/onefail","Elapsed":0.29}

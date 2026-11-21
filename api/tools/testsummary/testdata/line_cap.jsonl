@@ -1,0 +1,63 @@
+{"Time":"2026-11-21T22:42:01.396607+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/many"}
+{"Time":"2026-11-21T22:42:01.764033+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF0"}
+{"Time":"2026-11-21T22:42:01.764131+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF0","Output":"=== RUN   TestF0\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764208+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF0","Output":"    a_test.go:3: fail 0\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.764234+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF0","Output":"--- FAIL: TestF0 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764244+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF0","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.764253+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF1"}
+{"Time":"2026-11-21T22:42:01.764257+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF1","Output":"=== RUN   TestF1\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764261+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF1","Output":"    a_test.go:4: fail 1\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.764266+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF1","Output":"--- FAIL: TestF1 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.76427+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF1","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.764273+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF2"}
+{"Time":"2026-11-21T22:42:01.764276+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF2","Output":"=== RUN   TestF2\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.76428+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF2","Output":"    a_test.go:5: fail 2\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.764286+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF2","Output":"--- FAIL: TestF2 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764291+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF2","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.764294+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF3"}
+{"Time":"2026-11-21T22:42:01.764302+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF3","Output":"=== RUN   TestF3\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764311+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF3","Output":"    a_test.go:6: fail 3\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.764317+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF3","Output":"--- FAIL: TestF3 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764325+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF3","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.764329+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF4"}
+{"Time":"2026-11-21T22:42:01.764331+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF4","Output":"=== RUN   TestF4\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764335+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF4","Output":"    a_test.go:7: fail 4\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.76434+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF4","Output":"--- FAIL: TestF4 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764357+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF4","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.764364+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF5"}
+{"Time":"2026-11-21T22:42:01.764367+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF5","Output":"=== RUN   TestF5\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.764371+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF5","Output":"    a_test.go:8: fail 5\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.764376+01:00","Action":"o
+
+... [20012 characters truncated] ...
+
+F28","Output":"--- FAIL: TestF28 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765201+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF28","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765207+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF29"}
+{"Time":"2026-11-21T22:42:01.76521+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF29","Output":"=== RUN   TestF29\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765233+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF29","Output":"    a_test.go:32: fail 29\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.765239+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF29","Output":"--- FAIL: TestF29 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765243+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF29","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765247+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF30"}
+{"Time":"2026-11-21T22:42:01.76525+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF30","Output":"=== RUN   TestF30\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765255+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF30","Output":"    a_test.go:33: fail 30\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.76526+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF30","Output":"--- FAIL: TestF30 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765264+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF30","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765268+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF31"}
+{"Time":"2026-11-21T22:42:01.765271+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF31","Output":"=== RUN   TestF31\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765277+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF31","Output":"    a_test.go:34: fail 31\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.765282+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF31","Output":"--- FAIL: TestF31 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765292+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF31","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765298+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF32"}
+{"Time":"2026-11-21T22:42:01.765302+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF32","Output":"=== RUN   TestF32\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.76531+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF32","Output":"    a_test.go:35: fail 32\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.765315+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF32","Output":"--- FAIL: TestF32 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765319+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF32","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765322+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF33"}
+{"Time":"2026-11-21T22:42:01.765326+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF33","Output":"=== RUN   TestF33\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765332+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF33","Output":"    a_test.go:36: fail 33\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:01.765337+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF33","Output":"--- FAIL: TestF33 (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765341+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF33","Elapsed":0}
+{"Time":"2026-11-21T22:42:01.765346+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF34"}
+{"Time":"2026-11-21T22:42:01.76535+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","Test":"TestF34","Output":"=== RUN   TestF34\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:01.765355+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/many","
