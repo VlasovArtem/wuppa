@@ -10,11 +10,11 @@ import (
 
 func run(t *testing.T, fixture string) (out string, code int, logPath string) {
 	t.Helper()
-	f, err := os.Open(filepath.Join("testdata", fixture+".jsonl"))
+	f, err := os.Open(filepath.Join("testdata", fixture+".jsonl")) //nolint:gosec // fixture name is chosen by the test
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 	logPath = filepath.Join(t.TempDir(), "test-unit.log")
 	out, code = Summarize(f, "test-unit", logPath)
 	return out, code, logPath
@@ -146,7 +146,7 @@ func TestSummary(t *testing.T) {
 
 	t.Run("writes_log", func(t *testing.T) {
 		_, _, logPath := run(t, "one_failure")
-		b, err := os.ReadFile(logPath)
+		b, err := os.ReadFile(logPath) //nolint:gosec // path is a temp dir of this test
 		if err != nil {
 			t.Fatal(err)
 		}

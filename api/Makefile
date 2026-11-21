@@ -3,7 +3,47 @@ SHELL := /bin/bash
 OUT := .out
 ACTIONLINT := github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
 
-.PHONY: lint lint-workflows lint-selftest ci
+# Local settings: copy .env.example to .env (gitignored). Variables are exported to every recipe.
+-include .env
+DATABASE_URL ?= postgres://wuppa:wuppa@localhost:5432/wuppa?sslmode=disable
+export
+
+.PHONY: db-up db-down migrate migrate-down seed sqlc openapi-lint run \
+	test-unit test-integration test check lint lint-workflows lint-selftest test-selftest ci
+
+db-up:
+	@bash scripts/db.sh up
+
+db-down:
+	@bash scripts/db.sh down
+
+migrate:
+	@bash scripts/migrate.sh up
+
+migrate-down:
+	@bash scripts/migrate.sh down
+
+seed:
+	@bash scripts/unavailable.sh seed SEED-01 cmd/seed/main.go
+
+sqlc:
+	@bash scripts/unavailable.sh sqlc BE-02 sqlc.yaml
+
+openapi-lint:
+	@bash scripts/unavailable.sh openapi-lint BE-01 openapi.yaml
+
+run:
+	@go run ./cmd/api
+
+test-unit:
+	@bash scripts/test.sh unit
+
+test-integration:
+	@bash scripts/test.sh integration
+
+test: test-unit test-integration
+
+check: lint test
 
 lint:
 	@bash scripts/lint.sh
@@ -29,4 +69,7 @@ lint-workflows:
 lint-selftest:
 	@bash scripts/lint-selftest.sh
 
-ci: lint lint-workflows lint-selftest
+test-selftest:
+	@bash scripts/test-selftest.sh
+
+ci: lint lint-workflows lint-selftest test-selftest test
