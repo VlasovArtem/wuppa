@@ -745,7 +745,7 @@ Done when:
 
 #### [ ] BE-13 · Test environment · [#33](https://github.com/VlasovArtem/wuppa/issues/33) · plan: opus · review: standard
 
-- Multi-stage `api/Dockerfile` (build with `golang:1.23`, run on `gcr.io/distroless/static`), non-root user.
+- Multi-stage `api/Dockerfile` (build with `golang:1.27`, run on `gcr.io/distroless/static`), non-root user.
 - Run migrations on start (`goose up` in `main` behind a `MIGRATE_ON_START=true` flag).
 - **[Human]** Choose the hosting provider (EU region), create managed PostgreSQL, pick an EU SMTP provider (`SMTP_URL`, `MAIL_FROM`), set secrets (and `TRUSTED_PROXY_HOPS` for the provider's load balancer), domain `api-test.<domain>`. Then add a deploy job to `api.yml` for merges to `main`.
 

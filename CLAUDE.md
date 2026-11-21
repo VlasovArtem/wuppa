@@ -41,7 +41,7 @@ docs/
 
 | Part | Choice |
 | --- | --- |
-| API language | Go 1.23+ |
+| API language | Go 1.27 (pinned in `api/go.mod`; CI reads the version from there) |
 | Router | `github.com/go-chi/chi/v5` |
 | Database | PostgreSQL 16 |
 | DB access | `github.com/jackc/pgx/v5` + `sqlc` |
