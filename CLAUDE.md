@@ -60,22 +60,26 @@ docs/
 API (run from `api/`):
 
 ```
-make db-up        # start PostgreSQL in docker
-make migrate      # apply migrations
-make seed         # load demo data
-make run          # start the API on :8080
-make test         # go test ./... (needs db-up)
-make lint         # go vet + golangci-lint
-make sqlc         # regenerate sqlc code
-make openapi-lint # validate openapi.yaml
+make db-up              # start PostgreSQL in docker
+make migrate            # apply migrations
+make seed               # load demo data
+make run                # start the API on :8080
+make test-unit          # unit tests          [PKG=./internal/domain/...] [RUN=TestPeriodStart]
+make test-integration   # integration tests (starts the DB itself)  [PKG=] [RUN=]
+make test               # both
+make lint               # go vet + golangci-lint
+make check              # lint + test
+make sqlc               # regenerate sqlc code
+make openapi-lint       # validate openapi.yaml
 ```
 
 App (run from `app/`):
 
 ```
+make test-unit          # flutter test, summarised   [NAME=<file or test name>]
+make lint               # dart format check + flutter analyze
+make check              # lint + tests
 flutter pub get
-flutter analyze
-flutter test
 flutter run --flavor local -t lib/main_local.dart
 dart run build_runner build --delete-conflicting-outputs
 ```
@@ -91,3 +95,28 @@ dart run build_runner build --delete-conflicting-outputs
 - Every user-facing text exists in English and Russian (ARB files in the app, templates / push texts in the API).
 - Flutter: one folder per feature with `data/`, `providers/`, `ui/`; no business logic in widgets.
 - Keep `openapi.yaml` in sync with handlers in the same commit.
+
+## Step workflow
+
+Used by the global `tdd-step` skill (`~/.claude/skills/tdd-step`). Each task is one step: one branch, one PR.
+
+- Plan document: `docs/poc-plan.md`. Task headings: `#### [ ] <ID> · <title> · [#<n>](<issue>) · plan: opus|direct · review: fast|standard|heavy`.
+- Task folders: `docs/tasks/<ID>-<slug>/` with `plan.md`, `notes.md`, `log.md`, `review.md`, `result.md`, `handoff.md`. Lasting decisions: `docs/decisions.md`.
+- Scratch: `.steps/<ID>/` (gitignored): briefs and reviewer files.
+- Branch: `step/<ID>-<slug>` from `origin/master`; PR to `master` with `Closes #<n>`; the user merges (squash).
+- GitHub: repository `VlasovArtem/wuppa`. Run every gh command as `GH_TOKEN=$(gh auth token -u VlasovArtem) gh ...` (another gh account may be active).
+- Tests are written first (RED), then the code (GREEN). Before SET-02 / SET-03 exist, use `go test` / `flutter test` directly and note it in `log.md`.
+
+### Agent-friendly command contract
+
+`make -C api test-unit|test-integration|lint` and `make -C app test-unit|test-integration|lint` behave the same way:
+
+- Non-interactive, no colours or progress bars (`NO_COLOR=1`), deterministic (`-count=1`), bounded (`-timeout 5m`).
+- Narrowing: `PKG=` and `RUN=` for Go, `NAME=` for Flutter.
+- The full output goes to `<api|app>/.out/<target>.log` (gitignored); stdout stays short.
+- On failure, stdout lists only the failing parts, at most 60 lines: per failing test `FAIL <package>.<Test>/<sub> (<file>:<line>)` and its message lines; per lint finding `<file>:<line>:<col>: <message> (<linter>)`.
+- The last line is always exactly one of:
+  - `RESULT: PASS <target> tests=<n> skipped=<n> duration=<s>s` (lint: `issues=0`)
+  - `RESULT: FAIL <target> failed=<n> log=<path>` (lint: `issues=<n>`)
+  - `RESULT: ERROR <target> <reason>` (environment problem, e.g. Docker not running, unknown `PKG`)
+- Exit codes: 0 pass, 1 test or lint failure, 2 environment or usage error.
