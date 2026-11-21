@@ -38,9 +38,8 @@ jobs:
           go-version-file: api/go.mod
           cache-dependency-path: api/go.mod
       - name: Install golangci-lint
-        uses: golangci/golangci-lint-action@v8
-        with:
-          version: v2.15
-          install-only: true
+        run: |
+          go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.15.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
       - name: CI
         run: make -C api ci
