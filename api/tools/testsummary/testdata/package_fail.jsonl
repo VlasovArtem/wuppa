@@ -1,0 +1,8 @@
+{"Time":"2026-11-21T22:56:32.912377+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail"}
+{"Time":"2026-11-21T22:56:33.342211+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Test":"TestOK"}
+{"Time":"2026-11-21T22:56:33.342299+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Test":"TestOK","Output":"=== RUN   TestOK\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:33.342395+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Test":"TestOK","Output":"--- PASS: TestOK (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:33.342407+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Test":"TestOK","Elapsed":0}
+{"Time":"2026-11-21T22:56:33.342419+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Output":"PASS\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:33.342731+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Output":"FAIL\tgithub.com/VlasovArtem/wuppa/api/internal/pkgfail\t0.430s\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:33.342752+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/pkgfail","Elapsed":0.43}

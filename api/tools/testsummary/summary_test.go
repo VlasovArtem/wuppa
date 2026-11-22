@@ -156,6 +156,35 @@ func TestSummary(t *testing.T) {
 		}
 	})
 
+	t.Run("parent_failure", func(t *testing.T) {
+		out, code, _ := run(t, "parent_failure")
+		if code != 1 {
+			t.Errorf("exit code = %d, want 1 (parent failed itself)", code)
+		}
+		if !strings.Contains(out, "parentfail.TestX (a_test.go:5)") {
+			t.Errorf("failed parent not listed in %q", out)
+		}
+		if !strings.Contains(out, "parent failed itself") {
+			t.Errorf("missing message line in %q", out)
+		}
+		if !strings.Contains(lastLine(out), "RESULT: FAIL test-unit failed=1 ") {
+			t.Errorf("last line = %q", lastLine(out))
+		}
+	})
+
+	t.Run("package_fail", func(t *testing.T) {
+		out, code, _ := run(t, "package_fail")
+		if code != 1 {
+			t.Errorf("exit code = %d, want 1 (package failed without a failing test)", code)
+		}
+		if !strings.Contains(out, "FAIL github.com/VlasovArtem/wuppa/api/internal/pkgfail") {
+			t.Errorf("failed package not listed in %q", out)
+		}
+		if !strings.Contains(lastLine(out), "RESULT: FAIL test-unit failed=1 ") {
+			t.Errorf("last line = %q", lastLine(out))
+		}
+	})
+
 	t.Run("no_events", func(t *testing.T) {
 		out, code, _ := run(t, "empty")
 		if code != 2 {

@@ -52,7 +52,6 @@ func Summarize(r io.Reader, target, logPath string) (out string, code int) {
 		order      []string
 		pkgFailed  = map[string]bool{}
 		pkgOrder   []string
-		pkgTestBad = map[string]bool{}
 		buildFail  = map[string]bool{}
 		buildOrder []string
 		buildLines = map[string][]string{}
@@ -101,9 +100,6 @@ func Summarize(r io.Reader, target, logPath string) (out string, code int) {
 					if ev.Test != "" {
 						ts := state(tests, &order, ev.Package, ev.Test)
 						ts.action = ev.Action
-						if ev.Action == "fail" {
-							pkgTestBad[ev.Package] = true
-						}
 					} else if ev.Action == "fail" {
 						if ev.FailedBuild != "" {
 							p := cleanImportPath(ev.FailedBuild)
@@ -134,36 +130,48 @@ func Summarize(r io.Reader, target, logPath string) (out string, code int) {
 	}
 	_ = os.WriteFile(logPath, []byte(logBuf.String()), 0o600)
 
-	// leaf tests only: a parent is reported through its subtests.
+	// A parent is reported through its subtests, unless it failed on its own:
+	// a failed test is reported when none of its descendants failed.
 	isParent := map[string]bool{}
+	failedDesc := map[string]bool{}
 	for _, k := range order {
 		ts := tests[k]
-		if i := strings.LastIndex(ts.name, "/"); i >= 0 {
-			isParent[ts.pkg+"."+ts.name[:i]] = true
+		for name := ts.name; strings.Contains(name, "/"); {
+			name = name[:strings.LastIndex(name, "/")]
+			isParent[ts.pkg+"."+name] = true
+			if ts.action == "fail" {
+				failedDesc[ts.pkg+"."+name] = true
+			}
 		}
 	}
+	reported := map[string]bool{}
 
 	var body []string
 	passed, skipped, failed := 0, 0, 0
 	for _, k := range order {
 		ts := tests[k]
-		if isParent[k] {
-			continue
-		}
 		switch ts.action {
 		case "pass":
-			passed++
+			if !isParent[k] {
+				passed++
+			}
 		case "skip":
-			skipped++
+			if !isParent[k] {
+				skipped++
+			}
 		case "fail":
+			if failedDesc[k] {
+				continue
+			}
 			failed++
+			reported[ts.pkg] = true
 			body = append(body, failBlock(ts)...)
 		}
 	}
 
 	// packages that failed without a failing test or a build error (TestMain, panic outside a test, ...).
 	for _, p := range pkgOrder {
-		if pkgTestBad[p] || buildFail[p] {
+		if reported[p] || buildFail[p] {
 			continue
 		}
 		failed++

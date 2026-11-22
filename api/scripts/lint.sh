@@ -13,7 +13,7 @@ if ! command -v golangci-lint >/dev/null 2>&1; then
   exit 2
 fi
 
-NO_COLOR=1 golangci-lint run --timeout 5m ./... >"$log" 2>&1
+NO_COLOR=1 golangci-lint run --timeout 5m --build-tags integration ./... >"$log" 2>&1
 code=$?
 if [ "$code" -eq 0 ]; then
   echo "RESULT: PASS lint issues=0"

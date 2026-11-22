@@ -83,5 +83,13 @@ if ! go build -o "$out/testsummary" ./tools/testsummary 2>"$out/$target.build.er
 fi
 
 go test "${flags[@]}" "${pkgs[@]}" >"$json" 2>&1
-"$out/testsummary" -target "$target" -log "$log" <"$json"
-exit $?
+gocode=$?
+summary=$("$out/testsummary" -target "$target" -log "$log" <"$json")
+code=$?
+if [ "$code" -eq 0 ] && [ "$gocode" -ne 0 ]; then
+  # go test failed but the summary saw nothing wrong: never report a pass
+  echo "RESULT: ERROR $target go test exited $gocode (see $log)"
+  exit 2
+fi
+printf '%s\n' "$summary"
+exit "$code"

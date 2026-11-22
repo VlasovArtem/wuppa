@@ -77,8 +77,10 @@ else
     fail "14 database wuppa_test does not exist"
 
   # 15: migrate / migrate-down / migrate
+  # always against wuppa_test, never the developer database
+  testdb='postgres://wuppa:wuppa@localhost:5432/wuppa_test?sslmode=disable'
   for tgt in migrate migrate-down migrate; do
-    make --no-print-directory "$tgt" >"$out" 2>&1
+    make --no-print-directory "$tgt" "DATABASE_URL=$testdb" >"$out" 2>&1
     code=$?
     [ "$code" -eq 0 ] || fail "15 make $tgt: exit $code, expected 0"
     last_line | grep -Eq '^RESULT: PASS ' || fail "15 make $tgt: last line is '$(last_line)'"
