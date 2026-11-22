@@ -442,7 +442,7 @@ Tasks are ordered for one implementer and run with the `tdd-step` workflow (see 
 Done when:
 - [x] Both workflows exist and are valid YAML; a deliberate lint error makes `make lint` fail locally.
 
-#### [ ] SET-02 · Local environment · [#3](https://github.com/VlasovArtem/wuppa/issues/3) · plan: opus · review: standard
+#### [x] SET-02 · Local environment · [#3](https://github.com/VlasovArtem/wuppa/issues/3) · plan: opus · review: standard
 
 - `api/docker-compose.yml`: `postgres:16`, user/password/db `wuppa`, port 5432, named volume; `axllent/mailpit` (SMTP 1025, web UI 8025) for password-reset emails.
 - `api/Makefile` targets: `db-up`, `db-down`, `migrate`, `migrate-down`, `seed`, `run`, `test-unit`, `test-integration`, `test` (both), `lint`, `check` (lint + test), `sqlc`, `openapi-lint`.
@@ -451,9 +451,9 @@ Done when:
 - `api/.env.example` with all variables from section 2.
 
 Done when:
-- [ ] `make db-up && make migrate` succeeds on a clean machine (after BE-02 exists, re-check).
-- [ ] `api/tools/testsummary` has unit tests (pass, fail with file:line, panic, build error, 60-line cap).
-- [ ] A deliberately failing test makes `make test-unit` print only the failing test with its file:line and message, end with `RESULT: FAIL ...` and exit 1; with the database down, `make test-integration` brings it up by itself; an unknown `PKG` exits 2.
+- [x] `make db-up && make migrate` succeeds on a clean machine (after BE-02 exists, re-check).
+- [x] `api/tools/testsummary` has unit tests (pass, fail with file:line, panic, build error, 60-line cap).
+- [x] A deliberately failing test makes `make test-unit` print only the failing test with its file:line and message, end with `RESULT: FAIL ...` and exit 1; with the database down, `make test-integration` brings it up by itself; an unknown `PKG` exits 2.
 
 #### [ ] BE-01 · API skeleton, conventions, OpenAPI draft · [#4](https://github.com/VlasovArtem/wuppa/issues/4) · plan: opus · review: standard
 
