@@ -1,0 +1,13 @@
+{"Time":"2026-11-21T22:56:32.340231+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail"}
+{"Time":"2026-11-21T22:56:32.675818+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX"}
+{"Time":"2026-11-21T22:56:32.676045+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX","Output":"=== RUN   TestX\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676073+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX/case_a"}
+{"Time":"2026-11-21T22:56:32.676083+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX/case_a","Output":"=== RUN   TestX/case_a\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676102+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX/case_a","Output":"--- PASS: TestX/case_a (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676114+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX/case_a","Elapsed":0}
+{"Time":"2026-11-21T22:56:32.676119+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX","Output":"    a_test.go:5: parent failed itself\n","OutputType":"error"}
+{"Time":"2026-11-21T22:56:32.676124+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX","Output":"--- FAIL: TestX (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676127+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Test":"TestX","Elapsed":0}
+{"Time":"2026-11-21T22:56:32.67613+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Output":"FAIL\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676619+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Output":"FAIL\tgithub.com/VlasovArtem/wuppa/api/internal/parentfail\t0.336s\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:56:32.676636+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/parentfail","Elapsed":0.336}

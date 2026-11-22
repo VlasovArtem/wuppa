@@ -1,0 +1,17 @@
+{"Time":"2026-11-21T22:42:00.082971+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail"}
+{"Time":"2026-11-21T22:42:00.373476+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX"}
+{"Time":"2026-11-21T22:42:00.373549+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX","Output":"=== RUN   TestX\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.373602+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_a"}
+{"Time":"2026-11-21T22:42:00.373607+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_a","Output":"=== RUN   TestX/case_a\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.37362+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_a","Output":"--- PASS: TestX/case_a (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.373628+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_a","Elapsed":0}
+{"Time":"2026-11-21T22:42:00.373638+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_b"}
+{"Time":"2026-11-21T22:42:00.373641+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_b","Output":"=== RUN   TestX/case_b\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.373664+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_b","Output":"    a_test.go:5: bad b\n","OutputType":"error"}
+{"Time":"2026-11-21T22:42:00.373671+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_b","Output":"--- FAIL: TestX/case_b (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.373676+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX/case_b","Elapsed":0}
+{"Time":"2026-11-21T22:42:00.37368+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX","Output":"--- FAIL: TestX (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.373683+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Test":"TestX","Elapsed":0}
+{"Time":"2026-11-21T22:42:00.373716+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Output":"FAIL\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.374091+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Output":"FAIL\tgithub.com/VlasovArtem/wuppa/api/internal/subfail\t0.291s\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:42:00.374102+01:00","Action":"fail","Package":"github.com/VlasovArtem/wuppa/api/internal/subfail","Elapsed":0.291}

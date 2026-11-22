@@ -60,17 +60,23 @@ docs/
 API (run from `api/`):
 
 ```
-make db-up              # start PostgreSQL in docker
-make migrate            # apply migrations
-make seed               # load demo data
+make db-up              # start PostgreSQL + Mailpit in docker (copy .env.example to .env first)
+make db-down            # stop them (the data volume stays)
+make migrate            # apply migrations (goose up)
+make migrate-down       # roll back one migration
+make seed               # load demo data (ERROR until SEED-01)
 make run                # start the API on :8080
 make test-unit          # unit tests          [PKG=./internal/domain/...] [RUN=TestPeriodStart]
 make test-integration   # integration tests (starts the DB itself)  [PKG=] [RUN=]
 make test               # both
 make lint               # go vet + golangci-lint
 make check              # lint + test
-make sqlc               # regenerate sqlc code
-make openapi-lint       # validate openapi.yaml
+make ci                 # what CI runs: lint, workflow lint, self-tests, test
+make sqlc               # regenerate sqlc code (ERROR until BE-02)
+make openapi-lint       # validate openapi.yaml (ERROR until BE-01)
+
+# Every API target ends with one RESULT: line; targets without input yet exit 2 with
+# "RESULT: ERROR <target> not available until <task> (<file>)".
 ```
 
 App (run from `app/`):

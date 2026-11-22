@@ -1,0 +1,25 @@
+{"Time":"2026-11-21T22:41:58.715985+01:00","Action":"start","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass"}
+{"Time":"2026-11-21T22:41:59.188396+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestA"}
+{"Time":"2026-11-21T22:41:59.188456+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestA","Output":"=== RUN   TestA\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188492+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestA","Output":"--- PASS: TestA (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188502+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestA","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.18851+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB"}
+{"Time":"2026-11-21T22:41:59.188511+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB","Output":"=== RUN   TestB\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188513+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB/x"}
+{"Time":"2026-11-21T22:41:59.188515+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB/x","Output":"=== RUN   TestB/x\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.18852+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB/x","Output":"--- PASS: TestB/x (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188523+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB/x","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.188531+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB","Output":"--- PASS: TestB (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188533+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestB","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.188534+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestC"}
+{"Time":"2026-11-21T22:41:59.188535+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestC","Output":"=== RUN   TestC\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188537+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestC","Output":"--- PASS: TestC (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188539+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestC","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.18854+01:00","Action":"run","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestS"}
+{"Time":"2026-11-21T22:41:59.188542+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestS","Output":"=== RUN   TestS\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188547+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestS","Output":"    a_test.go:6: no\n"}
+{"Time":"2026-11-21T22:41:59.188551+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestS","Output":"--- SKIP: TestS (0.00s)\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.188552+01:00","Action":"skip","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Test":"TestS","Elapsed":0}
+{"Time":"2026-11-21T22:41:59.188553+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Output":"PASS\n","OutputType":"frame"}
+{"Time":"2026-11-21T22:41:59.189146+01:00","Action":"output","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Output":"ok  \tgithub.com/VlasovArtem/wuppa/api/internal/allpass\t0.473s\n"}
+{"Time":"2026-11-21T22:41:59.189155+01:00","Action":"pass","Package":"github.com/VlasovArtem/wuppa/api/internal/allpass","Elapsed":0.473}

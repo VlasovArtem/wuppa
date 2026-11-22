@@ -9,6 +9,7 @@
 .out/
 api/.out/
 api/internal/zzlintselftest/
+api/internal/zztestselftest/
 app/.out/
 
 # Secrets
